@@ -23,7 +23,8 @@ def main(opt):
     os.environ['CUDA_VISIBLE_DEVICES'] = opt.gpus_str
     opt.debug = max(opt.debug, 1)
     detector = Detector(opt)
-
+    if not os.path.exists('../results'):
+        os.makedirs('../results')
     if opt.demo == 'webcam' or opt.demo[opt.demo.rfind('.') + 1:].lower() in video_ext:
         is_video = True
         # demo on video stream
@@ -51,7 +52,8 @@ def main(opt):
         # fourcc = cv2.VideoWriter_fourcc(*'H264')
         out = cv2.VideoWriter('{}'.format(
         fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-        out = cv2.VideoWriter('/content/drive/MyDrive/CenterTrack/{}.avi'.format(
+        # out = cv2.VideoWriter('/content/drive/MyDrive/CenterTrack/{}.avi'.format(
+        out = cv2.VideoWriter('../results/{}.avi'.format(
             opt.exp_id + '_' + out_name).replace('.mp4', '.avi'), 
             fourcc, opt.save_framerate, (opt.video_w, opt.video_h))
 
