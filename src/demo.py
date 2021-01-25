@@ -47,9 +47,11 @@ def main(opt):
     print('out_name', out_name)
     
     if opt.save_video:
-        fourcc = cv2.VideoWriter_fourcc('M', 'J', 'P', 'G')
+        # fourcc = cv2.VideoWriter_fourcc('M', 'J', 'P', 'G')
         # fourcc = cv2.VideoWriter_fourcc(*'H264')
         out = cv2.VideoWriter('{}'.format(
+        fourcc = cv2.VideoWriter_fourcc(*'MJPG')
+        out = cv2.VideoWriter('/content/drive/MyDrive/CenterTrack/{}.avi'.format(
             opt.exp_id + '_' + out_name).replace('.mp4', '.avi'), 
             fourcc, opt.save_framerate, (opt.video_w, opt.video_h))
 
